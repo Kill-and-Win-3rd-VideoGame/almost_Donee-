@@ -107,4 +107,3 @@ class Blood(YellowObject):
         #  self.sound_channel = self.hit_sound.play()  # Play the hit sound and store the channel
          return hit_result
 
-  
