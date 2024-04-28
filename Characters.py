@@ -21,17 +21,15 @@ class GameObject:
         if self.direction == "up":
             self.y -= 0.5
         elif self.direction == "down":
-            self.y +=0.5
+            self.y += 0.5
         elif self.direction == "left":
             self.x -= 0.5
         elif self.direction == "right":
             self.x += 0.5
 
-        
         if random.random() < 0.001:
             self.direction = random.choice(["up", "down", "left", "right"])
 
-        
         if self.x < 0:
             self.x = 0
         elif self.x > 800:
@@ -54,19 +52,30 @@ class GameObject:
 class Player(GameObject):
     def __init__(self, imgUrl, size, x, y, speed):
         super().__init__(imgUrl, size, x, y, speed)
+        self.sword_fighting_sound = pygame.mixer.Sound("sword_fighting.mp3")
+
     def handle_input(self, keys):
         if keys[pygame.K_UP]:
             self.y -= 0.5
         elif keys[pygame.K_DOWN]:
-             self.y +=0.5
+             self.y += 0.5
         elif keys[pygame.K_LEFT]:
             self.x -= 0.5
         elif keys[pygame.K_RIGHT]:
            self.x += 0.5
 
+    def hit(self, other):
+        hit_result = super().hit(other)
+        if hit_result:
+            self.sword_fighting_sound.play()
+        return hit_result
+
 class YellowObject(GameObject):
+    sound_playing = False  # Static variable to track sound state
+
     def __init__(self, imgUrl, size, x, y, speed):
         super().__init__(imgUrl, size, x, y, speed)
+        self.sword_fighting_sound = pygame.mixer.Sound("sword_fighting.mp3")
 
     def sense_and_move(self, player):
         if player.x < self.x:
@@ -78,7 +87,24 @@ class YellowObject(GameObject):
         elif player.y > self.y:
             self.direction = "down"
 
+    # def hit(self, other):
+    #     hit_result = super().hit(other)
+    #     if hit_result and not YellowObject.sound_playing:  # Play sound only if not already playing
+    #         self.sword_fighting_sound.play()
+    #         YellowObject.sound_playing = True
+    #     return hit_result
+
 
 class Blood(YellowObject):
     def __init__(self, imgUrl, size, x, y, speed):
         super().__init__(imgUrl, size, x, y, speed)
+        self.hit_sound = pygame.mixer.Sound("sword_fighting.mp3")
+        self.sound_channel = None  # Store the sound channel for controlling playback
+
+    def hit(self, other):
+        hit_result = super().hit(other)
+        if hit_result:  # If hit is successful
+        #  self.sound_channel = self.hit_sound.play()  # Play the hit sound and store the channel
+         return hit_result
+
+  

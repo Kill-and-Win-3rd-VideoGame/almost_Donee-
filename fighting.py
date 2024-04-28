@@ -30,7 +30,7 @@ def Start_Game(numOfSkeleton):
     timer_start = pygame.time.get_ticks()
 
     # Create player (Pablo) and enemy objects
-    player = Characters.Player("pablo.png", 100, 100, 100, 0.1)
+    player = Characters.Player("pabloSkellton.png", 100, 100, 100, 0.1)
     enemies = []
     blood_indicators = []
 
