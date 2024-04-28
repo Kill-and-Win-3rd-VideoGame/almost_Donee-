@@ -2,8 +2,8 @@ import pygame
 import math
 import fighting
 import random
-from Classes import Room
-from Classes import Characters
+import Room
+import Characters
 
 def Start_Game():
     pygame.init()
@@ -30,12 +30,12 @@ def Start_Game():
 
     # Define rooms
     rooms = [
-        Room.Room("Living Room", "./Rooms/5.jpg", (frame_x + 50, frame_y + 50), 150, 150),
-        Room.Room("Bathroom", "./Rooms/6.jpg", (frame_x + 200, frame_y + 50), 150, 150),
-        Room.Room("Kitchen", "./Rooms/1.jpg", (frame_x + 350, frame_y + 50), 150, 150),
-        Room.Room("Hall", "./Rooms/2.jpg", (frame_x + 50, frame_y + 200), 150, 150),
-        Room.Room("Bedroom", "./Rooms/3.jpg", (frame_x + 200, frame_y + 200), 150, 150),
-        Room.Room("Poker Room", "./Rooms/4.jpg", (frame_x + 350, frame_y + 200), 150, 150)
+        Room.Room("Living Room", "5.jpg", (frame_x + 50, frame_y + 50), 150, 150),
+        Room.Room("Bathroom", "6.jpg", (frame_x + 200, frame_y + 50), 150, 150),
+        Room.Room("Kitchen", "1.jpg", (frame_x + 350, frame_y + 50), 150, 150),
+        Room.Room("Hall", "2.jpg", (frame_x + 50, frame_y + 200), 150, 150),
+        Room.Room("Bedroom", "3.jpg", (frame_x + 200, frame_y + 200), 150, 150),
+        Room.Room("Poker Room", "4.jpg", (frame_x + 350, frame_y + 200), 150, 150)
     ]
     player = Characters.Player("pablo.png", 100, 0, 100, 1) # Create an instance of the Player class
 
